@@ -13,10 +13,17 @@ then
 	clear
 else
 	echo "[!]"
+	apt-get install figlet -y &> /dev/null
 fi
 
 figlet zipalign
 echo
+echo """
+==================================
+[-] fix zipalign by K1M4K-ID
+==================================
+
+"""
 architecture=$(uname -m)
 
 if [ $architecture = "aarch64" ];
@@ -35,6 +42,15 @@ then
 	apt-get install android-libandroidfw -y &> /dev/null
 	wget http://ftp.de.debian.org/debian/pool/main/a/android-platform-build/zipalign_8.1.0+r23-2_amd64.deb &> /dev/null
 	dpkg -i zipalign_8.1.0+r23-2_amd64.deb &> /dev/null
+
+elif [ $architecture = "x86_64" ];
+then
+        echo "[+] install zipalign"
+        sleep 1
+        apt-get install android-libandroidfw -y &> /dev/null
+        wget http://ftp.de.debian.org/debian/pool/main/a/android-platform-build/zipalign_8.1.0+r23-2_amd64.deb &> /dev/null
+        dpkg -i zipalign_8.1.0+r23-2_amd64.deb &> /dev/null
+
 fi
 
 desktop="zipalign_8.1.0+r23-2_amd64.deb"
